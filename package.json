@@ -7,6 +7,7 @@
     "start:build": "tsc -w",
     "start:run": "nodemon build/index.js",
     "start": "concurrently npm:start:*",
+    "json:run": "json-server -w db.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/ahmedhany14/web-TS/issues"
   },
-  "homepage": "https://github.com/ahmedhany14/web-TS#readme"
+  "homepage": "https://github.com/ahmedhany14/web-TS#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "json-server": "^1.0.0-beta.3"
+  }
 }
