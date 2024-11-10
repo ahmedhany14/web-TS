@@ -6,9 +6,7 @@ interface userProps {
     age?: number
 }
 
-type Callback = () => void;
 export class user {
-    public events: { [key: string]: Callback[] } = {};
 
     constructor(private data: userProps) { }
 
@@ -17,21 +15,7 @@ export class user {
     }
 
     public set(update: userProps): void {
-        console.log("update", update);
         this.data = { ...this.data, ...update };
-    }
-
-    public on(eventName: string, cb: Callback) {
-        this.events[eventName] = this.events[eventName] || [];
-        this.events[eventName].push(cb);
-    }
-
-    public trigger(eventName: string): void {
-        if (!this.events[eventName]) return;
-
-        this.events[eventName].forEach(cb => {
-            cb();
-        });
     }
 
     fetch(): void {
@@ -41,11 +25,9 @@ export class user {
             }).catch((err) => {
                 console.log(err);
             });
-
     }
 
     save(): void {
-        console.log("this.data.id", this.data.id);
         if (this.data.id) {
             // update
             axios.put(`http://localhost:3000/users/${this.get('id')}`, this.data)
