@@ -1,9 +1,9 @@
 import { user } from './models/user';
 
+const newUser = new user({ name: 'newUser', age: 30 });
 
-//axios.post('http://localhost:3000/users', data);
+console.log(newUser.get('name'))
 
-const newUser = new user({ id: 'b0a7' });
-newUser.fetch();
-newUser.set({ name: 'newName', age: 99 });
-const newUser2 = new user({ name: 'ahmed', age: 21 });
+newUser.on('change', () => {
+    console.log('change');
+})

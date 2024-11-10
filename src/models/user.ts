@@ -1,38 +1,21 @@
-import axios from 'axios';
-
-interface userProps {
-    id?: string,
-    name?: string,
-    age?: number
-}
-
+import { Eventing } from './eveniting';
+import { sync } from './Sync';
+import { Attributes } from './attributes';
+import { userProps } from '../interfaces/UserInterface';
 export class user {
+    private events: Eventing = new Eventing();
+    private sync: sync<userProps> = new sync('http://localhost:3000/users/');
+    private attributes: Attributes<userProps>;
 
-    constructor(private data: userProps) { }
-
-    public get(propName: string): any {
-        return this.data[propName as keyof userProps];
+    constructor(private data: userProps) {
+        this.attributes = new Attributes<userProps>(data);
     }
 
-    public set(update: userProps): void {
-        this.data = { ...this.data, ...update };
-    }
-
-    fetch(): void {
-        axios.get(`http://localhost:3000/users/${this.get('id')}`)
-            .then((response) => {
-                this.set(response.data);
-            }).catch((err) => {
-                console.log(err);
-            });
-    }
-
-    save(): void {
-        if (this.data.id) {
-            // update
-            axios.put(`http://localhost:3000/users/${this.get('id')}`, this.data)
-            return;
-        }
-        axios.post('http://localhost:3000/users', this.data)
+    public on = this.events.on;
+    public trigger = this.events.trigger;
+    public fetch = this.sync.fetch;
+    public save = this.sync.save;
+    public get get() {
+        return this.attributes.get;
     }
 }
