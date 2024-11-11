@@ -12,9 +12,8 @@ export class Model<T extends hasIdentifier> {
 
     public on = this.events.on;
     public trigger = this.events.trigger;
-    get get() {
-        return this.attributes.get;
-    }
+    get = this.attributes.get;
+
     set(update: T): void {
         this.attributes.set(update);
         this.trigger('change');

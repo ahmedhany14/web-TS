@@ -1,6 +1,6 @@
 import { user } from './models/user';
 
-const newUser = new user({});
+const newUser = new user({ id: "3ac2" });
 
 
 newUser.on('change', () => {
@@ -21,3 +21,9 @@ newUser.on('save', () => {
 newUser.on('error', () => {
     console.log('there is an error user was not saved');
 })
+
+newUser.fetch();
+
+newUser.set({ name: '3amo Hany', age: 25 });
+
+newUser.save();
