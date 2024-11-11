@@ -1,5 +1,5 @@
 import { Model } from "./Model";
-import { userProps } from "../interfaces/UserInterface";
+import { userProps } from "../interfaces/InterFaces";
 import { sync } from "./Sync";
 import { Eventing } from "./eveniting";
 import { Attributes } from "./attributes";

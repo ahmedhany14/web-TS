@@ -1,23 +1,6 @@
-import { AxiosResponse, AxiosPromise } from 'axios';
+import { AxiosResponse } from 'axios';
 
-interface attrs<T> {
-    get(propName: keyof T): T[keyof T];
-    set(update: T): void;
-    getAll(): T;
-}
-
-interface Events {
-    on(eventName: string, callback: () => void): void;
-    trigger(eventName: string): void;
-}
-interface Sync<T> {
-    fetch(filter: string): AxiosPromise;
-    save(data: T): AxiosPromise;
-}
-
-interface hasIdentifier {
-    id?: string;
-}
+import { attrs, Events, Sync, hasIdentifier } from '../interfaces/InterFaces';
 
 export class Model<T extends hasIdentifier> {
 
