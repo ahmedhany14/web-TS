@@ -1,5 +1,5 @@
 export interface userProps {
-    identifier?: string,
+    id?: string,
     name?: string,
     age?: number
 }

@@ -1,7 +1,7 @@
 import axios, { AxiosPromise } from 'axios';
 
 interface hasIdentifier {
-    identifier?: string;
+    id?: string;
 }
 
 export class sync<T extends hasIdentifier> {
@@ -16,8 +16,8 @@ export class sync<T extends hasIdentifier> {
     }
 
     save(data: T): AxiosPromise {
-        const filter = data.identifier;
-        if (filter) return axios.put(`${this.URL}${filter}}`, data);;
+        const filter = data.id;
+        if (filter) return axios.put(`${this.URL}${filter}`, data);;
         return axios.post(`${this.URL}`, data);
     }
 }
